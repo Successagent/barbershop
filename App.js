@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// Hooks and Dependencies
+import { useEffect } from "react";
+
+// ReactNative Components
+import { StatusBar } from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+import Navigator from "./routes/SplashStatck";
+// Font
+import { useFonts } from "expo-font";
+
+// Components
 
 export default function App() {
+  // States
+  const [fontLoaded] = useFonts({
+    "cerapro-regular": require("./app/assets/fonts/Fontspring-DEMO-cerapro-regular.otf"),
+    "cerapro-bold": require("./app/assets/fonts/Fontspring-DEMO-cerapro-bold.otf"),
+    "inter-regular": require("./app/assets/fonts/Inter-Regular.ttf"),
+    "inter-bold": require("./app/assets/fonts/Inter-Bold.ttf"),
+    "inter-medium": require("./app/assets/fonts/Inter-Medium.ttf"),
+  });
+
+  useEffect(() => {
+    async function prepare() {
+      return SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  if (!fontLoaded) {
+    return undefined;
+  } else {
+    SplashScreen.hideAsync();
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <>
+      <Navigator ScreenOptions={{ headerShown: false }}></Navigator>
       <StatusBar style="auto" />
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
