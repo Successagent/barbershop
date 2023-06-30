@@ -15,6 +15,10 @@ const Hero = ({ navigation }) => {
       navigation.goBack();
     } else if (navigation.state.routeName === "Business") {
       navigation.goBack();
+    } else if (navigation.state.routeName === "ForgetPassword") {
+      navigation.goBack();
+    } else if (navigation.state.routeName === "OTP") {
+      navigation.goBack();
     }
   };
 

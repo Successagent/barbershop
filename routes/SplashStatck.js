@@ -2,7 +2,10 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import {
   Business,
+  ForgetPassword,
   Individual,
+  OTP,
+  ResetPassword,
   SignIn,
   SignUp,
   Splash,
@@ -27,6 +30,15 @@ const screen = {
   },
   Business: {
     screen: Business,
+  },
+  ForgetPassword: {
+    screen: ForgetPassword,
+  },
+  OTP: {
+    screen: OTP,
+  },
+  ResetPassword: {
+    screen: ResetPassword,
   },
 };
 

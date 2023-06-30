@@ -83,7 +83,6 @@ export const globalStyles = StyleSheet.create({
   },
   textInput: {
     fontSize: 16,
-    fontFamily: utils.secondaryFont,
   },
   welcomFooter: {
     width: 343,

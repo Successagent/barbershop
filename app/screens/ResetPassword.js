@@ -12,16 +12,12 @@ import {
 import { globalStyles, utils } from "../globalStyles/styles";
 import { Hero } from "../components";
 import { Card } from "react-native-shadow-cards";
-import { AntDesign } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const SignIn = ({ navigation }) => {
-  const navigateToSignUp = () => {
-    navigation.navigate("SignUp");
-  };
-  const navigateToForgetPassword = () => {
-    navigation.navigate("ForgetPassword");
+const ResetPassword = ({ navigation }) => {
+  const navigateToSignIn = () => {
+    navigation.navigate("SignIn");
   };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -32,14 +28,13 @@ const SignIn = ({ navigation }) => {
             style={[
               globalStyles.welcomeSignContainer,
               globalStyles.signUpContainer,
+              styles.paddingBottom,
             ]}
           >
             <View style={globalStyles.welcomeTextContainer}>
-              <Text style={globalStyles.signUpText}>
-                Sign in to your account
-              </Text>
-              <Text style={globalStyles.paragraph}>
-                Welcome back, we missed you!
+              <Text style={globalStyles.signUpText}>Enter new Password</Text>
+              <Text style={[globalStyles.paragraph, styles.businessParagraph]}>
+                Enter a new secure password
               </Text>
             </View>
             <View
@@ -49,16 +44,21 @@ const SignIn = ({ navigation }) => {
               ]}
             >
               <View style={globalStyles.inputContainer}>
-                <AntDesign
+                <EvilIcons
                   style={{ width: "10%" }}
-                  name="inbox"
-                  size={20}
+                  name="lock"
+                  size={28}
                   color={utils.primary}
                 />
                 <TextInput
-                  style={[globalStyles.textInput, { width: "90%" }]}
-                  placeholder="Email"
-                  keyboardType="email-address"
+                  style={[globalStyles.textInput, { width: "75%" }]}
+                  placeholder="New Password"
+                />
+                <MaterialIcons
+                  name="visibility"
+                  size={20}
+                  color={utils.primary}
+                  style={{ width: "15%" }}
                 />
               </View>
               <View style={globalStyles.inputContainer}>
@@ -70,7 +70,7 @@ const SignIn = ({ navigation }) => {
                 />
                 <TextInput
                   style={[globalStyles.textInput, { width: "75%" }]}
-                  placeholder="Password"
+                  placeholder="Confirm Password"
                 />
                 <MaterialIcons
                   name="visibility"
@@ -81,41 +81,13 @@ const SignIn = ({ navigation }) => {
               </View>
             </View>
             <View style={globalStyles.btnContainer}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={navigateToSignIn}>
                 <View style={globalStyles.btnWrapper}>
                   <Text style={globalStyles.btn}>Sign In</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={navigateToForgetPassword}>
-                <View
-                  style={[
-                    globalStyles.btnWrapper,
-                    {
-                      borderColor: utils.other,
-                      backgroundColor: utils.other,
-                    },
-                  ]}
-                >
-                  <Text
-                    style={[
-                      globalStyles.btn,
-                      { color: utils.secondary, fontFamily: utils.primaryFont },
-                    ]}
-                  >
-                    Forget Password
-                  </Text>
-                </View>
-              </TouchableOpacity>
             </View>
           </Card>
-          <TouchableOpacity onPress={navigateToSignUp}>
-            <View style={[globalStyles.welcomFooter, { marginTop: 90 }]}>
-              <Text style={globalStyles.footerText}>
-                Dont have an account?
-                <Text style={{ color: utils.secondary }}> Sign Up</Text>
-              </Text>
-            </View>
-          </TouchableOpacity>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -125,8 +97,15 @@ const SignIn = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: utils.other,
-    position: "positive",
+    position: "relative",
+  },
+  businessParagraph: {
+    textAlign: "center",
+    width: "90%",
+  },
+  paddingBottom: {
+    paddingBottom: 50,
   },
 });
 
-export default SignIn;
+export default ResetPassword;

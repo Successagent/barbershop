@@ -5,6 +5,8 @@ import SignUp from "./SignUp";
 import Individual from "./Individual";
 import Business from "./Business";
 import ForgetPassword from "./ForgetPassword";
+import OTP from "./OTP";
+import ResetPassword from "./ResetPassword";
 
 export {
   Welcome,
@@ -14,4 +16,6 @@ export {
   Individual,
   Business,
   ForgetPassword,
+  OTP,
+  ResetPassword,
 };
