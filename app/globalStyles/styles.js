@@ -35,7 +35,7 @@ export const globalStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: utils.secondary,
+    backgroundColor: "red",
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",
@@ -88,7 +88,6 @@ export const globalStyles = StyleSheet.create({
     width: 343,
     margin: "auto",
     marginTop: 120,
-    marginBottom: 30,
   },
   welcomeSignContainer: {
     width: 343,
