@@ -1,44 +1,53 @@
+// Hooks and Dependencies
 import React from "react";
+
+// Components
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+
+// Styles
 import { utils } from "../globalStyles/styles";
+
+// Icons
 import { AntDesign } from "@expo/vector-icons";
 
 const Hero = ({ navigation }) => {
   const navigateSplash = () => {
-    if (navigation.state.routeName === "Welcome") {
-      navigation.navigate("Splash");
-    } else if (navigation.state.routeName === "SignIn") {
-      navigation.navigate("Welcome");
-    } else if (navigation.state.routeName === "SignUp") {
-      navigation.goBack();
-    } else if (navigation.state.routeName === "Individual") {
-      navigation.goBack();
-    } else if (navigation.state.routeName === "Business") {
-      navigation.goBack();
-    } else if (navigation.state.routeName === "ForgetPassword") {
-      navigation.goBack();
-    } else if (navigation.state.routeName === "OTP") {
-      navigation.goBack();
-    }
+    navigation.goBack();
   };
 
   return (
     <View style={styles.hero}>
       <View>
-        <TouchableOpacity onPress={navigateSplash}>
-          <AntDesign
-            style={{ marginTop: 50 }}
-            size={24}
-            color={utils.other}
-            name="arrowleft"
-          />
-        </TouchableOpacity>
+        {navigation.state.routeName === "Welcome" ? (
+          ""
+        ) : (
+          <TouchableOpacity onPress={navigateSplash}>
+            <AntDesign
+              style={{ marginTop: 10 }}
+              size={24}
+              color={utils.other}
+              name="arrowleft"
+            />
+          </TouchableOpacity>
+        )}
         <Image
           style={styles.heroback}
           source={require("../assets/heroback.png")}
         />
       </View>
-      <View style={styles.heroImageContainer}>
+      <View
+        style={[
+          styles.heroImageContainer,
+          {
+            marginTop:
+              navigation.state.routeName === "Welcome"
+                ? 70
+                : navigation.state.routeName === "Individual" || "Business"
+                ? 0
+                : 0,
+          },
+        ]}
+      >
         <Image source={require("../assets/heroImage.png")} />
       </View>
     </View>

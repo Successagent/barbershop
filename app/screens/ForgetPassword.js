@@ -1,5 +1,7 @@
+// Hooks and Dependencies
 import React, { useEffect } from "react";
 
+// Components
 import {
   Text,
   StyleSheet,
@@ -8,12 +10,15 @@ import {
   View,
   TextInput,
   Keyboard,
-  Alert,
+  SafeAreaView,
 } from "react-native";
-
-import { globalStyles, utils } from "../globalStyles/styles";
 import { Hero } from "../components";
 import { Card } from "react-native-shadow-cards";
+
+// Styles
+import { globalStyles, utils } from "../globalStyles/styles";
+
+// Icons
 import { AntDesign } from "@expo/vector-icons";
 import { useForm } from "react-hook-form";
 
@@ -39,63 +44,68 @@ const ForgetPassword = ({ navigation }) => {
     register("email", { required: true });
   }, [register]);
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={globalStyles.wrapper}>
-        <View style={[globalStyles.container, styles.container]}>
-          <Hero navigation={navigation} />
-          <Card
-            style={[
-              globalStyles.welcomeSignContainer,
-              globalStyles.signUpContainer,
-              styles.paddingBottom,
-            ]}
-          >
-            <View style={globalStyles.welcomeTextContainer}>
-              <Text style={globalStyles.signUpText}>Forget Password?</Text>
-              <Text style={[globalStyles.paragraph, styles.businessParagraph]}>
-                Enter your email associated with account
-              </Text>
-            </View>
-            <View
+    <>
+      <SafeAreaView style={{ backgroundColor: utils.secondary }}></SafeAreaView>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <SafeAreaView style={globalStyles.wrapper}>
+          <View style={[globalStyles.container, styles.container]}>
+            <Hero navigation={navigation} />
+            <Card
               style={[
-                globalStyles.formContainer,
-                globalStyles.welcomeTextContainer,
+                globalStyles.welcomeSignContainer,
+                globalStyles.signUpContainer,
+                styles.paddingBottom,
               ]}
             >
-              <View style={globalStyles.inputContainer}>
-                <AntDesign
-                  style={{ width: "10%" }}
-                  name="inbox"
-                  size={20}
-                  color={utils.primary}
-                />
-                <TextInput
-                  style={[globalStyles.textInput, { width: "90%" }]}
-                  placeholder="Email"
-                  onChangeText={(text) => setValue("email", text, true)}
-                  keyboardType="email-address"
-                />
+              <View style={globalStyles.welcomeTextContainer}>
+                <Text style={globalStyles.signUpText}>Forget Password?</Text>
+                <Text
+                  style={[globalStyles.paragraph, styles.businessParagraph]}
+                >
+                  Enter your email associated with account
+                </Text>
               </View>
-            </View>
-            <View style={globalStyles.btnContainer}>
-              <TouchableOpacity onPress={handleSubmit(handleForm)}>
-                <View style={globalStyles.btnWrapper}>
-                  <Text style={globalStyles.btn}>Send OTP</Text>
+              <View
+                style={[
+                  globalStyles.formContainer,
+                  globalStyles.welcomeTextContainer,
+                ]}
+              >
+                <View style={globalStyles.inputContainer}>
+                  <AntDesign
+                    style={{ width: "10%" }}
+                    name="inbox"
+                    size={20}
+                    color={utils.primary}
+                  />
+                  <TextInput
+                    style={[globalStyles.textInput, { width: "90%" }]}
+                    placeholder="Email"
+                    onChangeText={(text) => setValue("email", text, true)}
+                    keyboardType="email-address"
+                  />
                 </View>
-              </TouchableOpacity>
-            </View>
-          </Card>
-          <TouchableOpacity onPress={navigateToSignIn}>
-            <View style={[globalStyles.welcomFooter, { marginTop: 250 }]}>
-              <Text style={globalStyles.footerText}>
-                Remember Password?
-                <Text style={{ color: utils.secondary }}> Sign In</Text>
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
+              </View>
+              <View style={globalStyles.btnContainer}>
+                <TouchableOpacity onPress={handleSubmit(handleForm)}>
+                  <View style={globalStyles.btnWrapper}>
+                    <Text style={globalStyles.btn}>Send OTP</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </Card>
+            <TouchableOpacity onPress={navigateToSignIn}>
+              <View style={[globalStyles.welcomFooter, { marginTop: 200 }]}>
+                <Text style={globalStyles.footerText}>
+                  Remember Password?
+                  <Text style={{ color: utils.secondary }}> Sign In</Text>
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
+    </>
   );
 };
 

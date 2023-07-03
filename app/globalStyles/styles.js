@@ -73,6 +73,7 @@ export const globalStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 400,
     fontFamily: utils.interRegular,
+    color: utils.primary,
   },
   signUpText: {
     color: utils.primary,
@@ -87,7 +88,7 @@ export const globalStyles = StyleSheet.create({
   welcomFooter: {
     width: 343,
     margin: "auto",
-    marginTop: 120,
+    marginTop: 100,
   },
   welcomeSignContainer: {
     width: 343,
@@ -105,7 +106,7 @@ export const globalStyles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    backgroundColor: utils.secondary,
+    backgroundColor: utils.other,
     alignItems: "center",
     justifyContent: "flex-start",
   },
