@@ -1,5 +1,5 @@
 // Hooks and Dependencies
-import React from "react";
+import React, { useContext } from "react";
 
 // Components
 import {
@@ -21,8 +21,10 @@ import { Hero } from "../components";
 import { Card } from "react-native-shadow-cards";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { AppContext } from "../../context";
 
 const ResetPassword = ({ navigation }) => {
+  const { password, togglePasswordVisibility } = useContext(AppContext);
   const navigateToSignIn = () => {
     navigation.navigate("SignIn");
   };
@@ -64,13 +66,18 @@ const ResetPassword = ({ navigation }) => {
                   <TextInput
                     style={[globalStyles.textInput, { width: "75%" }]}
                     placeholder="New Password"
+                    secureTextEntry={password}
                   />
-                  <MaterialIcons
-                    name="visibility"
-                    size={20}
-                    color={utils.primary}
+                  <TouchableOpacity
                     style={{ width: "15%" }}
-                  />
+                    onPress={togglePasswordVisibility}
+                  >
+                    <MaterialIcons
+                      name="visibility"
+                      size={20}
+                      color={utils.primary}
+                    />
+                  </TouchableOpacity>
                 </View>
                 <View style={globalStyles.inputContainer}>
                   <EvilIcons
@@ -82,13 +89,18 @@ const ResetPassword = ({ navigation }) => {
                   <TextInput
                     style={[globalStyles.textInput, { width: "75%" }]}
                     placeholder="Confirm Password"
+                    secureTextEntry={password}
                   />
-                  <MaterialIcons
-                    name="visibility"
-                    size={20}
-                    color={utils.primary}
+                  <TouchableOpacity
                     style={{ width: "15%" }}
-                  />
+                    onPress={togglePasswordVisibility}
+                  >
+                    <MaterialIcons
+                      name="visibility"
+                      size={20}
+                      color={utils.primary}
+                    />
+                  </TouchableOpacity>
                 </View>
               </View>
               <View style={globalStyles.btnContainer}>

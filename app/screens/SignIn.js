@@ -35,6 +35,8 @@ const SignIn = ({ navigation }) => {
     navigation.navigate("ForgetPassword");
   };
 
+  console.log(password);
+
   return (
     <>
       <SafeAreaView style={{ backgroundColor: utils.secondary }}></SafeAreaView>

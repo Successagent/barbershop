@@ -1,5 +1,5 @@
 // Hooks and Dependencies
-import React from "react";
+import React, { useContext } from "react";
 
 // Components
 import {
@@ -23,8 +23,10 @@ import { AntDesign } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { AppContext } from "../../context";
 
 const Business = ({ navigation }) => {
+  const { togglePasswordVisibility, password } = useContext(AppContext);
   const navigateToSignIn = () => {
     navigation.navigate("SignIn");
   };
@@ -105,13 +107,18 @@ const Business = ({ navigation }) => {
                   <TextInput
                     style={[globalStyles.textInput, { width: "75%" }]}
                     placeholder="Password"
+                    secureTextEntry={password}
                   />
-                  <MaterialIcons
-                    name="visibility"
-                    size={20}
-                    color={utils.primary}
+                  <TouchableOpacity
                     style={{ width: "15%" }}
-                  />
+                    onPress={togglePasswordVisibility}
+                  >
+                    <MaterialIcons
+                      name={password ? "visibility-off" : "visibility"}
+                      size={20}
+                      color={utils.primary}
+                    />
+                  </TouchableOpacity>
                 </View>
               </View>
               <View style={globalStyles.btnContainer}>

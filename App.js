@@ -42,7 +42,7 @@ export default function App() {
   }
   return (
     <>
-      <AppContext.Provider value={[password, togglePasswordVisibility]}>
+      <AppContext.Provider value={{ password, togglePasswordVisibility }}>
         <Navigator />
         <StatusBar style="auto" />
       </AppContext.Provider>
