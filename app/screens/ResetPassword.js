@@ -1,5 +1,5 @@
 // Hooks and Dependencies
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 // Components
 import {
@@ -11,6 +11,7 @@ import {
   TextInput,
   Keyboard,
   SafeAreaView,
+  ScrollView,
 } from "react-native";
 
 // Styles
@@ -24,13 +25,22 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { AppContext } from "../../context";
 
 const ResetPassword = ({ navigation }) => {
+  // States
+  const [confirmPass, setConfirmPass] = useState(true);
   const { password, togglePasswordVisibility } = useContext(AppContext);
+
+  // Functions
   const navigateToSignIn = () => {
     navigation.navigate("SignIn");
+  };
+
+  const toggleConfirmPass = () => {
+    setConfirmPass(!confirmPass);
   };
   return (
     <>
       <SafeAreaView style={{ backgroundColor: utils.secondary }}></SafeAreaView>
+
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <SafeAreaView style={globalStyles.wrapper}>
           <View style={[globalStyles.container, styles.container]}>
@@ -73,7 +83,7 @@ const ResetPassword = ({ navigation }) => {
                     onPress={togglePasswordVisibility}
                   >
                     <MaterialIcons
-                      name="visibility"
+                      name={password ? "visibility" : "visibility-off"}
                       size={20}
                       color={utils.primary}
                     />
@@ -89,14 +99,14 @@ const ResetPassword = ({ navigation }) => {
                   <TextInput
                     style={[globalStyles.textInput, { width: "75%" }]}
                     placeholder="Confirm Password"
-                    secureTextEntry={password}
+                    secureTextEntry={confirmPass}
                   />
                   <TouchableOpacity
                     style={{ width: "15%" }}
-                    onPress={togglePasswordVisibility}
+                    onPress={toggleConfirmPass}
                   >
                     <MaterialIcons
-                      name="visibility"
+                      name={confirmPass ? "visibility" : "visibility-off"}
                       size={20}
                       color={utils.primary}
                     />
@@ -122,6 +132,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: utils.other,
     position: "relative",
+    height: 700,
   },
   businessParagraph: {
     textAlign: "center",
